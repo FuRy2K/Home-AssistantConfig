@@ -1,0 +1,14 @@
+outdoor_lights:
+  name: Outdoor Lights
+  entities:
+    - switch.ge_14291_in_wall_smart_switch_switch 
+    - switch.ge_14291_in_wall_smart_switch_switch_2
+
+adults:
+  name: Adults
+  icon: mdi:account-multiple
+  all: true
+  entities:
+    - device_tracker.chris_phone
+    - device_tracker.kristin_phone
+              

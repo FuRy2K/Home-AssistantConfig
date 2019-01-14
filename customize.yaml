@@ -1,0 +1,12 @@
+sensor.hank_hkzwdws01_doorwindow_sensor_alarm_level_2:
+  hidden: true
+remote.sandy_lr:
+  hidden: true
+remote.living_room:
+  hidden: true
+sensor.hank_hkzwdws01_doorwindow_sensor_alarm_type_2:
+  hidden: true
+sensor.hank_hkzwdws01_doorwindow_sensor_burglar_2:
+  hidden: true
+sensor.hank_hkzwdws01_doorwindow_sensor_sourcenodeid_2:
+  hidden: true
