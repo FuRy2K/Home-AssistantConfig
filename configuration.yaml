@@ -63,13 +63,6 @@ sensor:
       - loadpct
       - timeleft
 
-binary_sensor:
-  - platform: uptimerobot
-    api_key: u664427-705cae8efa25e92febc52ec2
-  - platform: workday
-    country: US
-    state: OH    
-
 # Text to speech
 #tts:
 #  - platform: google
@@ -85,6 +78,11 @@ device_tracker:
     verify_ssl: false
     new_device_defaults:
       track_new_devices: false
+
+binary_sensor:
+  - platform: workday
+    country: US
+    state: OH
 
 notify:
     platform: pushover
