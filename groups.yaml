@@ -14,6 +14,31 @@ outdoor_lights:
     - switch.ge_14291_in_wall_smart_switch_switch 
     - switch.ge_14291_in_wall_smart_switch_switch_2
 
+ups:      
+  name: UPS
+  view: true
+  icon: mdi:battery
+  entities:
+    - sensor.ups_input_voltage
+    - sensor.ups_load
+    - sensor.ups_time_left
+    - sensor.ups_status
+
+uptimerobot:
+  name: Uptime Robot
+  view: true
+  icon: mdi:robot
+  entities:
+    - binary_sensor.nzbget
+    - binary_sensor.nzbhydra2
+    - binary_sensor.plex
+    - binary_sensor.portainer
+    - binary_sensor.radarr
+    - binary_sensor.radarr4k
+    - binary_sensor.sonarr
+    - binary_sensor.sonarr4k
+    - binary_sensor.tautulli
+
 adults:
   name: Adults
   icon: mdi:account-multiple 
