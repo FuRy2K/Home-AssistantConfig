@@ -1,3 +1,13 @@
+#default_view:
+home:
+  name: Home
+  view: true
+  icon: mdi:home
+  entities:
+    - group.adults
+#    - binary_sensor.*
+    - group.all_switches
+    - sun.sun
 outdoor_lights:
   name: Outdoor Lights
   entities:
@@ -6,9 +16,15 @@ outdoor_lights:
 
 adults:
   name: Adults
-  icon: mdi:account-multiple
+  icon: mdi:account-multiple 
   all: true
   entities:
     - device_tracker.chris_phone
     - device_tracker.kristin_phone
-              
+
+automation_view:
+  name: Automation
+  view: true
+  entities:
+    - group.all_automations
+    - group.all_scripts

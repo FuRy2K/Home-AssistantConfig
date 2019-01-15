@@ -10,3 +10,9 @@ sensor.hank_hkzwdws01_doorwindow_sensor_burglar_2:
   hidden: true
 sensor.hank_hkzwdws01_doorwindow_sensor_sourcenodeid_2:
   hidden: true
+group.all_automations:
+  hidden: false
+group.all_scripts:
+  hidden: false
+binary_sensor.hank_hkzwdws01_doorwindow_sensor_sensor:
+  hidden: true

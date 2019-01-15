@@ -18,14 +18,14 @@
   action:
   - data:
       entity_id: group.outdoor_lights
-    service: homeassistant.turn_off
+    service: switch.turn_off
 - id: '1547241126929'
   alias: Everyones home
   trigger:
   - entity_id: group.adults
-    event: enter
-    platform: zone
-    zone: zone.home
+    from: not_home
+    platform: state
+    to: home
   condition:
   - after: sunset
     condition: sun
