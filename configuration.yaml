@@ -57,6 +57,11 @@ sun:
 sensor:
   # Weather prediction
   - platform: yr
+  - platform: apcupsd
+    resources:
+      - linev
+      - loadpct
+      - timeleft
 
 # Text to speech
 #tts:
@@ -83,6 +88,9 @@ notify:
     platform: pushover
     api_key: a1eiejyezbimevg1bkb8p7xgbtfebp 
     user_key: uzqgf2n61i34jrownn2v8c73f2ofvw
+
+apcupsd:
+    host: 192.168.51.11
 
 group: !include groups.yaml
 automation: !include automations.yaml
