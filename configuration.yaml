@@ -61,20 +61,17 @@ sensor:
       - loadpct
       - timeleft
       - status
-
+  - platform: amcrest
+    
 binary_sensor:
   - platform: workday
     country: US
     state: OH
-  - platform: uptimerobot
-    api_key: !secret uptimerobot_api
+    #  - platform: uptimerobot
+    #api_key: !secret uptimerobot_api
     
-# Text to speech
-#tts:
-#  - platform: google
-
-# Cloud
-#cloud:
+camera:
+  - platform: amcrest
 
 device_tracker:
   - platform: unifi
@@ -92,6 +89,27 @@ notify:
 
 apcupsd:
     host: 192.168.51.11
+
+amcrest:
+  - host: 192.168.51.32
+    name: Twins_BR
+    username: admin
+    password: !secret amcrest_password
+    sensors:
+      - motion_detector    
+  - host: 192.168.51.33
+    name: Quincy_BR
+    username: admin
+    password: !secret amcrest_password
+    sensors:
+      - motion_detector    
+  - host: 192.168.51.34
+    name: Garage
+    username: admin
+    password: !secret amcrest_password
+    sensors:
+      - motion_detector    
+    
 
 group: !include groups.yaml
 automation: !include automations.yaml

@@ -84,7 +84,7 @@
   action:
   - data:
       entity_id: group.outdoor_lights
-    service: script.turn_off
+    service: switch.turn_off
 - id: '1547435118208'
   alias: Workday Mornings - Turn off Kitchen Light
   trigger:
