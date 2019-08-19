@@ -46,6 +46,9 @@ discovery:
 # Enables support for tracking state changes over time
 history:
 
+# Enable DB purge
+recorder:
+
 # View all events in a logbook
 logbook:
 
@@ -114,6 +117,10 @@ tplink:
     switch:
         - host: 192.168.51.152
 
+octoprint:
+    host: octopi.janes.local
+    api_key: !secret octoprint_api
+    
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
