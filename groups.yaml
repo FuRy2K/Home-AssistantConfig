@@ -11,8 +11,8 @@ home:
 outdoor_lights:
   name: Outdoor Lights
   entities:
-    - switch.ge_14291_in_wall_smart_switch_switch 
-    - switch.ge_14291_in_wall_smart_switch_switch_2
+    - switch.ge_14291_in_wall_smart_switch_switch_2 
+    - switch.ge_14291_in_wall_smart_switch_switch_3
 
 camera:
   name: Camera
