@@ -120,6 +120,8 @@ tplink:
 octoprint:
     host: octopi.janes.local
     api_key: !secret octoprint_api
+    bed: true
+    number_of_tools: 1
     
 group: !include groups.yaml
 automation: !include automations.yaml
