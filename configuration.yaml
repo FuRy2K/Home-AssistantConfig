@@ -106,7 +106,11 @@ amcrest:
     password: !secret amcrest_password
     binary_sensors:
       - motion_detected   
-    
+
+tplink:
+    discovery: false
+    switch:
+        - host: 192.168.51.152
 
 group: !include groups.yaml
 automation: !include automations.yaml
