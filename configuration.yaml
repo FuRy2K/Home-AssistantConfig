@@ -66,10 +66,7 @@ sensor:
 binary_sensor:
   - platform: workday
     country: US
-    state: OH
-    #  - platform: uptimerobot
-    #api_key: !secret uptimerobot_api
-    
+system_health:    
 camera:
   - platform: amcrest
 
@@ -95,20 +92,20 @@ amcrest:
     name: Twins_BR
     username: admin
     password: !secret amcrest_password
-    sensors:
-      - motion_detector    
+    binary_sensors:
+      - motion_detected    
   - host: 192.168.51.33
     name: Quincy_BR
     username: admin
     password: !secret amcrest_password
-    sensors:
-      - motion_detector    
+    binary_sensors:
+      - motion_detected    
   - host: 192.168.51.34
     name: Garage
     username: admin
     password: !secret amcrest_password
-    sensors:
-      - motion_detector    
+    binary_sensors:
+      - motion_detected   
     
 
 group: !include groups.yaml
