@@ -62,7 +62,7 @@
     state: 'on'
   action:
   - data:
-      entity_id: switch.ge_14291_inwall_smart_switch_switch
+      entity_id: switch.ge_14291_in_wall_smart_switch_switch
     service: switch.turn_on
 - id: '1547433263483'
   alias: Workday Mornings - Turn on Outdoor Lights
@@ -100,5 +100,5 @@
     state: 'on'
   action:
   - data:
-      entity_id: switch.ge_14291_inwall_smart_switch_switch
+      entity_id: switch.ge_14291_in_wall_smart_switch_switch
     service: switch.turn_off

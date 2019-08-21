@@ -112,10 +112,10 @@ amcrest:
     binary_sensors:
       - motion_detected   
 
-tplink:
-    discovery: false
-    switch:
-        - host: 192.168.51.152
+#tplink:
+#    discovery: false
+#    switch:
+#        - host: 192.168.51.152
 
 octoprint:
     host: octopi.janes.local
