@@ -109,8 +109,6 @@ amcrest:
     name: Garage
     username: admin
     password: !secret amcrest_password
-    binary_sensors:
-      - motion_detected   
 
 #tplink:
 #    discovery: false
