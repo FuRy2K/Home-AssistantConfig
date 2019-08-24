@@ -110,6 +110,8 @@ amcrest:
     username: admin
     password: !secret amcrest_password
 
+hassio:
+
 #tplink:
 #    discovery: false
 #    switch:
