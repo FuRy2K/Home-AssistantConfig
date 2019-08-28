@@ -98,13 +98,13 @@ amcrest:
     username: admin
     password: !secret amcrest_password
     binary_sensors:
-      - motion_detected    
+#      - motion_detected    
   - host: 192.168.51.33
     name: Quincy_BR
     username: admin
     password: !secret amcrest_password
     binary_sensors:
-      - motion_detected    
+#      - motion_detected    
   - host: 192.168.51.34
     name: Garage
     username: admin
