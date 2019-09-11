@@ -1,20 +1,6 @@
-sensor.hank_hkzwdws01_doorwindow_sensor_alarm_level_2:
-  hidden: true
-remote.sandy_lr:
-  hidden: true
-remote.living_room:
-  hidden: true
-sensor.hank_hkzwdws01_doorwindow_sensor_alarm_type_2:
-  hidden: true
-sensor.hank_hkzwdws01_doorwindow_sensor_burglar_2:
-  hidden: true
-sensor.hank_hkzwdws01_doorwindow_sensor_sourcenodeid_2:
-  hidden: true
-group.all_automations:
-  hidden: false
-group.all_scripts:
-  hidden: false
-binary_sensor.hank_hkzwdws01_doorwindow_sensor_sensor:
-  hidden: true
 sensor.ups_status:
   icon: mdi:battery
+device_tracker.unifi_3c_28_6d_e7_dc_7f_default:
+    icon: mdi:human-female
+device_tracker.unifi_b4_f7_a1_8a_c4_e4_default:
+    icon: mdi:human-male
