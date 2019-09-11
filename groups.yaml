@@ -58,7 +58,7 @@ adults:
   all: true
   entities:
     - device_tracker.unifi_b4_f7_a1_8a_c4_e4_default
-    - device_tracker.unifi_3c_28_6d_e7_dc_7f_default
+    - device_tracker.unifi_3c_28_6d_e7_dc_7f_default 
 
 automation_view:
   name: Automation
