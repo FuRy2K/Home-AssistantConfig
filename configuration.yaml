@@ -31,7 +31,7 @@ config:
 # the developers to assist with development of Home Assistant.
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-# updater:
+updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
 
@@ -75,15 +75,6 @@ system_health:
 camera:
   - platform: amcrest
 
-device_tracker:
-  - platform: unifi
-    host: unifi.janeshome.net 
-    username: unifi-ro
-    password: !secret unifi_password
-    verify_ssl: false
-    new_device_defaults:
-      track_new_devices: false
-
 notify:
     platform: pushover
     api_key: !secret pushover_api_key
@@ -116,7 +107,7 @@ amcrest:
 #        - host: 192.168.51.152
 
 octoprint:
-    host: octopi.janes.local
+    host: octopi.janes.home
     api_key: !secret octoprint_api
     bed: true
     number_of_tools: 1
