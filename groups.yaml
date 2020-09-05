@@ -1,12 +1,9 @@
 #default_view:
 home:
   name: Home
-  view: true
   icon: mdi:home
   entities:
     - group.adults
-#    - binary_sensor.*
-    - group.all_switches
     - sun.sun
 outdoor_lights:
   name: Outdoor Lights
@@ -16,18 +13,15 @@ outdoor_lights:
 
 camera:
   name: Camera
-  view: true
+#  view: true
   icon: mdi:cctv
   entities:
           - camera.garage
           - camera.quincy_br
           - camera.twins_br
-          - sensor.garage_motion_detected
-          - sensor.quincy_br_motion_detected
-          - sensor.twins_br_motion_detected
 ups:      
   name: UPS
-  view: true
+#  view: true
   icon: mdi:battery
   entities:
     - sensor.ups_input_voltage
@@ -37,7 +31,7 @@ ups:
 
 octoprint:
     name: OctoPrint
-    view: true
+#    view: true
     icon: mdi:printer-3d
     entities:
         - sensor.octoprint_actual_bed_temp
@@ -57,13 +51,6 @@ adults:
   icon: mdi:account-multiple 
   all: true
   entities:
-    - device_tracker.unifi_b4_f7_a1_8a_c4_e4_default #Chris Phone
+    - device_tracker.velvet #Chris Phone
     - device_tracker.unifi_3c_28_6d_e7_dc_7f_default #Kristin Phone
     - device_tracker.unifi_58_cb_52_92_fc_34_default #Sandy Phone
-
-automation_view:
-  name: Automation
-  view: true
-  entities:
-    - group.all_automations
-    - group.all_scripts

@@ -67,7 +67,7 @@
 - id: '1547433263483'
   alias: Workday Mornings - Turn on Outdoor Lights
   trigger:
-  - at: 06:20
+  - at: 06:00
     platform: time
   condition:
   - condition: state
@@ -79,6 +79,7 @@
   - data:
       entity_id: group.outdoor_lights
     service: switch.turn_on
+  mode: single
 - id: '1547434549041'
   alias: Sunrise - Turn Off Outdoor Lights
   trigger:
