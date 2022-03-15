@@ -54,7 +54,7 @@
 - id: '1547432270277'
   alias: Workday Mornings - Turn on Kitchen Light
   trigger:
-  - at: 05:30:00
+  - at: 06:15:00
     platform: time
   condition:
   - condition: state
@@ -64,6 +64,7 @@
   - data:
       entity_id: switch.ge_14291_in_wall_smart_switch_switch
     service: switch.turn_on
+  mode: single
 - id: '1547433263483'
   alias: Workday Mornings - Turn on Outdoor Lights
   trigger:

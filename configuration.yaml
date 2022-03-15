@@ -12,6 +12,8 @@ homeassistant:
   time_zone: America/New_York
   # Customization file
   customize: !include customize.yaml
+  auth_mfa_modules:
+      - type: totp
 
 # Show links to resources in log and frontend
 #introduction:
@@ -31,7 +33,7 @@ config:
 # the developers to assist with development of Home Assistant.
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
+#updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
 
@@ -45,6 +47,11 @@ discovery:
 
 # Enables support for tracking state changes over time
 history:
+
+http:
+    use_x_forwarded_for: true
+    trusted_proxies:
+        - 172.18.0.0/24
 
 # Enable DB purge
 recorder:
@@ -66,14 +73,14 @@ sensor:
       - loadpct
       - timeleft
       - status
-  - platform: amcrest
+#  - platform: amcrest
     
 binary_sensor:
   - platform: workday
     country: US
 system_health:    
-camera:
-  - platform: amcrest
+#camera:
+#  - platform: amcrest
 
 notify:
     platform: pushover
@@ -83,34 +90,27 @@ notify:
 apcupsd:
     host: 192.168.51.11
 
-amcrest:
-  - host: 192.168.51.32
-    name: Twins_BR
-    username: admin
-    password: !secret amcrest_password
-    binary_sensors:
-#      - motion_detected    
-  - host: 192.168.51.33
-    name: Quincy_BR
-    username: admin
-    password: !secret amcrest_password
-    binary_sensors:
-#      - motion_detected    
-  - host: 192.168.51.34
-    name: Garage
-    username: admin
-    password: !secret amcrest_password
+#amcrest:
+#  - host: 192.168.51.32
+#    name: Twins_BR
+#    username: admin
+#    password: !secret amcrest_password
+#    binary_sensors:
+#  - host: 192.168.51.33
+#    name: Quincy_BR
+#    username: admin
+#    password: !secret amcrest_password
+#    binary_sensors:
+#  - host: 192.168.51.34
+#    name: Garage
+#    username: admin
+#    password: !secret amcrest_password
 
-#tplink:
-#    discovery: false
-#    switch:
-#        - host: 192.168.51.152
-
-octoprint:
-    host: octopi.janes.home
-    api_key: !secret octoprint_api
-    bed: true
-    number_of_tools: 1
+#octoprint:
+    #host: octopi.janes.home
+    #api_key: !secret octoprint_api
+    #bed: true
+    #number_of_tools: 1
     
 group: !include groups.yaml
 automation: !include automations.yaml
