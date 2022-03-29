@@ -90,7 +90,7 @@ notify:
     user_key: !secret pushover_user_key
 
 apcupsd:
-    host: 192.168.51.11
+    host: apcupsd   #Docker image 
 
 #amcrest:
 #  - host: 192.168.51.32
