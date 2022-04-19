@@ -8,10 +8,10 @@
     entity_id: group.adults
     state: not_home
   action:
-  - alias: ''
-    data:
-      entity_id: group.outdoor_lights
-    service: switch.turn_on
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.outdoor_lights
 - id: '1547235814708'
   alias: Nighttime - Turn off Outdoor Lights
   trigger:
@@ -19,9 +19,10 @@
     platform: time
   condition: []
   action:
-  - data:
-      entity_id: group.outdoor_lights
+  - data: {}
     service: switch.turn_off
+    target:
+      entity_id: switch.outdoor_lights
 - id: '1547241126929'
   alias: Everyones home
   trigger:
@@ -29,18 +30,26 @@
     from: not_home
     platform: state
     to: home
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
   condition:
   - after: sunset
     condition: sun
   action:
-  - data:
-      entity_id: group.outdoor_lights
+  - data: {}
     service: switch.turn_off
+    target:
+      entity_id: switch.outdoor_lights
 - id: '1547328859557'
   alias: Someone left after dark
   trigger:
   - entity_id: group.adults
-    for: 0:15:00
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
     from: home
     platform: state
     to: not_home
@@ -48,9 +57,10 @@
   - after: sunset
     condition: sun
   action:
-  - data:
-      entity_id: group.outdoor_lights
+  - data: {}
     service: switch.turn_on
+    target:
+      entity_id: switch.outdoor_lights
 - id: '1547432270277'
   alias: Workday Mornings - Turn on Kitchen Light
   trigger:
@@ -61,14 +71,15 @@
     entity_id: binary_sensor.workday_sensor
     state: 'on'
   action:
-  - data:
-      entity_id: switch.ge_14291_in_wall_smart_switch_switch
+  - data: {}
     service: switch.turn_on
+    target:
+      entity_id: switch.kitchen_light_switch
   mode: single
 - id: '1547433263483'
   alias: Workday Mornings - Turn on Outdoor Lights
   trigger:
-  - at: 06:00
+  - at: 06:00:00
     platform: time
   condition:
   - condition: state
@@ -77,9 +88,10 @@
   - before: sunrise
     condition: sun
   action:
-  - data:
-      entity_id: group.outdoor_lights
+  - data: {}
     service: switch.turn_on
+    target:
+      entity_id: switch.outdoor_lights
   mode: single
 - id: '1547434549041'
   alias: Sunrise - Turn Off Outdoor Lights
@@ -88,9 +100,11 @@
     platform: sun
   condition: []
   action:
-  - data:
-      entity_id: group.outdoor_lights
+  - data: {}
     service: switch.turn_off
+    target:
+      entity_id:
+      - switch.outdoor_lights
 - id: '1547435118208'
   alias: Workday Mornings - Turn off Kitchen Light
   trigger:
@@ -101,6 +115,38 @@
     entity_id: binary_sensor.workday_sensor
     state: 'on'
   action:
-  - data:
-      entity_id: switch.ge_14291_in_wall_smart_switch_switch
+  - data: {}
     service: switch.turn_off
+    target:
+      entity_id:
+      - switch.kitchen_light_switch
+- id: '1648953669498'
+  alias: UPS on battery
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.ups_status
+    attribute: friendly_name
+    to: ONBATT
+    from: ONLINE
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      message: UPS on battery
+  mode: single
+- id: '1648953861359'
+  alias: UPS off battery
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.ups_status
+    attribute: friendly_name
+    to: ONLINE
+    from: ONBATT
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      message: UPS  off battery
+  mode: single
