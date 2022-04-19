@@ -5,20 +5,7 @@ home:
   entities:
     - group.adults
     - sun.sun
-outdoor_lights:
-  name: Outdoor Lights
-  entities:
-    - switch.ge_14291_in_wall_smart_switch_switch_2 
-    - switch.ge_14291_in_wall_smart_switch_switch_3
 
-#camera:
-#  name: Camera
-#  view: true
-#  icon: mdi:cctv
-#  entities:
-#          - camera.garage
-#          - camera.quincy_br
-#          - camera.twins_br
 ups:      
   name: UPS
 #  view: true
@@ -30,8 +17,8 @@ ups:
     - sensor.ups_status
 
       
-      #octoprint:
-      #    name: OctoPrint
+#octoprint:
+#    name: OctoPrint
 #    view: true
 #    icon: mdi:printer-3d
 #    entities:
@@ -52,9 +39,6 @@ adults:
   icon: mdi:account-multiple 
   all: true
   entities:
-      #    - device_tracker.velvet #Chris Phone
-      #    - device_tracker.unifi_3c_28_6d_e7_dc_7f_default #Kristin Phone
-      #    - device_tracker.unifi_58_cb_52_92_fc_34_default #Sandy Phone
     - person.chris
     - person.kristin
     - person.sandy
