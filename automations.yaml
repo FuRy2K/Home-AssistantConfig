@@ -150,3 +150,20 @@
     data:
       message: UPS  off battery
   mode: single
+- id: '1651675937641'
+  alias: Turn on Kitchen Light when Garage door opens after sunset
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.garage_door_access_control
+    to: 'on'
+    from: 'off'
+  condition:
+  - condition: sun
+    after: sunset
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      device_id: 09ef56958255a9b2b8a3ce737b4b63dd
+  mode: single
