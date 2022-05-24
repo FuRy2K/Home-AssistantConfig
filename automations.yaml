@@ -167,3 +167,61 @@
     target:
       device_id: 09ef56958255a9b2b8a3ce737b4b63dd
   mode: single
+- id: '1652748926018'
+  alias: Turn off Master Bedroom AC
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 02c74a710a384786aa620119f92aa7dd
+    entity_id: remote.master_bedroom_tv
+    domain: remote
+  condition:
+  - condition: time
+    before: 00:00:00
+    after: '18:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - service: climate.turn_off
+    data: {}
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  mode: single
+- id: '1652749365472'
+  alias: Turn on Master Bedroom AC
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 02c74a710a384786aa620119f92aa7dd
+    entity_id: remote.master_bedroom_tv
+    domain: remote
+  condition:
+  - condition: time
+    before: 00:00:00
+    after: '18:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  - condition: numeric_state
+    entity_id: climate.d828c9202173_climate
+    attribute: current_temperature
+    above: '70'
+  action:
+  - service: climate.turn_on
+    data: {}
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  mode: single
