@@ -2,7 +2,8 @@ version: '3'
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:2022.5.5"
+    image: "ghcr.io/home-assistant/home-assistant:2022.6.2"
+    init: false
     volumes:
       - /opt/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
@@ -21,7 +22,7 @@ services:
         condition: service_started
   zwavejs2mqtt:
     container_name: zwavejs2mqtt
-    image: "zwavejs/zwavejs2mqtt:6.10.0"
+    image: "zwavejs/zwavejs2mqtt:6.11.0"
     restart: always
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
