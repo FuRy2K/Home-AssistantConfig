@@ -125,10 +125,10 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: sensor.ups_status
+    entity_id:
+    - sensor.ups_status
     attribute: friendly_name
     to: ONBATT
-    from: ONLINE
   condition: []
   action:
   - service: notify.notify
