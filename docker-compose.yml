@@ -23,7 +23,7 @@ services:
   zwavejs2mqtt:
     container_name: zwavejs2mqtt
     image: "zwavejs/zwavejs2mqtt:6.12.0"
-    restart: always
+    restart: unless-stopped 
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
       - 'wud.link.template=https://github.com/zwave-js/zwavejs2mqtt/releases/tag/v$${major}.$${minor}.$${patch}'
@@ -54,6 +54,7 @@ services:
   apcupsd:
     container_name: "apcupsd"
     image: "fopina/apcupsd"
+    restart: unless-stopped
     devices:
       - "/dev/usb/hiddev0"
     ports:
