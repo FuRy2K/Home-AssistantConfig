@@ -13,8 +13,23 @@ services:
       - 'wud.link.template=https://github.com/home-assistant/core/releases/tag/$${major}.$${minor}.$${patch}'
       - 'wud.display.name=Home-Assistant'
       - 'wud.display.icon=mdi-home-assistant'
+      - "com.github.saltbox.saltbox_managed=true"
+      - traefik.enable=true
+      - traefik.http.routers.home-assistant-http.entrypoints=web
+      - traefik.http.routers.home-assistant-http.middlewares=globalHeaders@file,redirect-to-https,gzip
+      - traefik.http.routers.home-assistant-http.rule=Host(`home-assistant.janes.stream`)
+      - traefik.http.routers.home-assistant-http.service=home-assistant
+      - traefik.http.routers.home-assistant.entrypoints=websecure
+      - traefik.http.routers.home-assistant.middlewares=globalHeaders@file,secureHeaders@file
+      - traefik.http.routers.home-assistant.rule=Host(`home-assistant.janes.stream`)
+      - traefik.http.routers.home-assistant.service=home-assistant
+      - traefik.http.routers.home-assistant.tls.certresolver=cfdns
+      - traefik.http.routers.home-assistant.tls.options=securetls@file
+      - traefik.http.services.home-assistant.loadbalancer.server.port=8123
     privileged: true
     network_mode: host
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
     depends_on:
       zwavejs2mqtt:
         condition: service_started
