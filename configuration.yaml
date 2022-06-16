@@ -53,6 +53,7 @@ http:
     trusted_proxies:
         - 172.18.0.0/24
         - 172.19.0.0/24
+        - 127.0.0.1
           
 
 # Enable DB purge
@@ -81,8 +82,6 @@ binary_sensor:
   - platform: workday
     country: US
 system_health:    
-#camera:
-#  - platform: amcrest
 
 notify:
     platform: pushover
@@ -92,21 +91,6 @@ notify:
 apcupsd:
     host: apcupsd   #Docker image 
 
-#amcrest:
-#  - host: 192.168.51.32
-#    name: Twins_BR
-#    username: admin
-#    password: !secret amcrest_password
-#    binary_sensors:
-#  - host: 192.168.51.33
-#    name: Quincy_BR
-#    username: admin
-#    password: !secret amcrest_password
-#    binary_sensors:
-#  - host: 192.168.51.34
-#    name: Garage
-#    username: admin
-#    password: !secret amcrest_password
 
 #octoprint:
     #host: octopi.janes.home
