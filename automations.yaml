@@ -216,12 +216,47 @@
     - sat
     - sun
   - condition: numeric_state
-    entity_id: climate.d828c9202173_climate
-    attribute: current_temperature
-    above: '70'
+    entity_id: sensor.thermometer_air_temperature
+    above: '72'
   action:
   - service: climate.turn_on
     data: {}
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  mode: single
+- id: '1655923927052'
+  alias: Heat Alarm - Turn on AC
+  description: ''
+  trigger:
+  - type: hot
+    platform: device
+    device_id: 301b4cf8ab6b987a4bd0983d8fb509fd
+    entity_id: binary_sensor.thermometer_heat_alarm_overheat_detected
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: climate.set_hvac_mode
+    data:
+      hvac_mode: cool
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  - wait_for_trigger:
+    - type: not_hot
+      platform: device
+      device_id: 301b4cf8ab6b987a4bd0983d8fb509fd
+      entity_id: binary_sensor.thermometer_heat_alarm_overheat_detected
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+  - service: climate.set_hvac_mode
+    data:
+      hvac_mode: auto
     target:
       device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
   mode: single
