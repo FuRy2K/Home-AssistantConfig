@@ -219,6 +219,11 @@
     entity_id: sensor.thermometer_air_temperature
     above: '72'
   action:
+  - service: climate.set_temperature
+    data:
+      temperature: 70
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
   - service: climate.turn_on
     data: {}
     target:
@@ -239,8 +244,12 @@
       seconds: 0
   condition: []
   action:
-  - service: climate.set_hvac_mode
+  - service: notify.notify
     data:
+      message: Master Bedroom overheated
+  - service: climate.set_temperature
+    data:
+      temperature: 70
       hvac_mode: cool
     target:
       device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
@@ -254,8 +263,9 @@
         hours: 0
         minutes: 10
         seconds: 0
-  - service: climate.set_hvac_mode
+  - service: climate.set_temperature
     data:
+      temperature: 73
       hvac_mode: auto
     target:
       device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
