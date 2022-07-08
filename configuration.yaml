@@ -25,6 +25,8 @@ frontend:
 # Enables configuration UI
 config:
 
+scene: !include scenes.yaml
+
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
 #   base_url: example.duckdns.org:8123
@@ -55,6 +57,7 @@ http:
         - 172.18.0.0/24
         - 172.19.0.0/24
         - 127.0.0.1
+        - ::1
           
 
 # Enable DB purge
