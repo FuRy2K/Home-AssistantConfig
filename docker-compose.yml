@@ -2,7 +2,7 @@ version: '3'
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:2022.6.7"
+    image: "ghcr.io/home-assistant/home-assistant:2022.7.1"
     init: false
     volumes:
       - /opt/home-assistant:/config
@@ -14,22 +14,22 @@ services:
       - 'wud.display.name=Home-Assistant'
       - 'wud.display.icon=mdi-home-assistant'
       - "com.github.saltbox.saltbox_managed=true"
-      - traefik.enable=true
-      - traefik.http.routers.home-assistant-http.entrypoints=web
-      - traefik.http.routers.home-assistant-http.middlewares=globalHeaders@file,redirect-to-https,gzip
-      - traefik.http.routers.home-assistant-http.rule=Host(`home-assistant.janes.stream`)
-      - traefik.http.routers.home-assistant-http.service=home-assistant
-      - traefik.http.routers.home-assistant.entrypoints=websecure
-      - traefik.http.routers.home-assistant.middlewares=globalHeaders@file,secureHeaders@file
-      - traefik.http.routers.home-assistant.rule=Host(`home-assistant.janes.stream`)
-      - traefik.http.routers.home-assistant.service=home-assistant
-      - traefik.http.routers.home-assistant.tls.certresolver=cfdns
-      - traefik.http.routers.home-assistant.tls.options=securetls@file
-      - traefik.http.services.home-assistant.loadbalancer.server.port=8123
+#      - traefik.enable=true
+#      - traefik.http.routers.home-assistant-http.entrypoints=web
+#      - traefik.http.routers.home-assistant-http.middlewares=globalHeaders@file,redirect-to-https,gzip
+#      - traefik.http.routers.home-assistant-http.rule=Host(`ha.janes.stream`)
+#      - traefik.http.routers.home-assistant-http.service=home-assistant
+#      - traefik.http.routers.home-assistant.entrypoints=websecure
+#      - traefik.http.routers.home-assistant.middlewares=globalHeaders@file,secureHeaders@file
+#      - traefik.http.routers.home-assistant.rule=Host(`ha.janes.stream`)
+#      - traefik.http.routers.home-assistant.service=home-assistant
+#      - traefik.http.routers.home-assistant.tls.certresolver=cfdns
+#      - traefik.http.routers.home-assistant.tls.options=securetls@file
+#      - traefik.http.services.home-assistant.loadbalancer.server.port=8123
     privileged: true
     network_mode: host
     extra_hosts:
-      - host.docker.internal:172.17.0.1
+      - host.docker.internal:host-gateway
     depends_on:
       zwavejs2mqtt:
         condition: service_started
@@ -37,7 +37,7 @@ services:
         condition: service_started
   zwavejs2mqtt:
     container_name: zwavejs2mqtt
-    image: "zwavejs/zwavejs2mqtt:6.12.0"
+    image: "zwavejs/zwavejs2mqtt:6.13.0"
     restart: unless-stopped 
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
