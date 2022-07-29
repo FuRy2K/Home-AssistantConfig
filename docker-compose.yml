@@ -7,6 +7,8 @@ services:
     volumes:
       - /opt/home-assistant:/config
       - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '8123:8123'
     restart: unless-stopped
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
@@ -14,22 +16,22 @@ services:
       - 'wud.display.name=Home-Assistant'
       - 'wud.display.icon=mdi-home-assistant'
       - "com.github.saltbox.saltbox_managed=true"
-#      - traefik.enable=true
-#      - traefik.http.routers.home-assistant-http.entrypoints=web
-#      - traefik.http.routers.home-assistant-http.middlewares=globalHeaders@file,redirect-to-https,gzip
-#      - traefik.http.routers.home-assistant-http.rule=Host(`ha.janes.stream`)
-#      - traefik.http.routers.home-assistant-http.service=home-assistant
-#      - traefik.http.routers.home-assistant.entrypoints=websecure
-#      - traefik.http.routers.home-assistant.middlewares=globalHeaders@file,secureHeaders@file
-#      - traefik.http.routers.home-assistant.rule=Host(`ha.janes.stream`)
-#      - traefik.http.routers.home-assistant.service=home-assistant
-#      - traefik.http.routers.home-assistant.tls.certresolver=cfdns
-#      - traefik.http.routers.home-assistant.tls.options=securetls@file
-#      - traefik.http.services.home-assistant.loadbalancer.server.port=8123
+      - traefik.enable=true
+      - traefik.http.routers.home-assistant-http.entrypoints=web
+      - traefik.http.routers.home-assistant-http.middlewares=globalHeaders@file,redirect-to-https,gzip
+      - traefik.http.routers.home-assistant-http.rule=Host(`home-assistant.janes.stream`)
+      - traefik.http.routers.home-assistant-http.service=home-assistant
+      - traefik.http.routers.home-assistant.entrypoints=websecure
+      - traefik.http.routers.home-assistant.middlewares=globalHeaders@file,secureHeaders@file
+      - traefik.http.routers.home-assistant.rule=Host(`home-assistant.janes.stream`)
+      - traefik.http.routers.home-assistant.service=home-assistant
+      - traefik.http.routers.home-assistant.tls.certresolver=cfdns
+      - traefik.http.routers.home-assistant.tls.options=securetls@file
+      - traefik.http.services.home-assistant.loadbalancer.server.port=8123
     privileged: true
-    network_mode: host
-    extra_hosts:
-      - host.docker.internal:host-gateway
+#    network_mode: host
+#    extra_hosts:
+#      - host.docker.internal:host-gateway
     depends_on:
       zwavejs2mqtt:
         condition: service_started
@@ -50,8 +52,8 @@ services:
       # Uncomment if you want logs time and dates to match your timezone instead of UTC
       # Available at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       - TZ=America/New_York
-    networks:
-      - zwave
+#    networks:
+#      - saltbox
     devices:
       # Do not use /dev/ttyUSBX serial devices, as those mappings can change over time.
       # Instead, use the /dev/serial/by-id/X serial device for your Z-Wave stick.
@@ -74,5 +76,22 @@ services:
       - "/dev/usb/hiddev0"
     ports:
       - "127.0.0.1:3551:3551"
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0.14
+    container_name: mosquitto
+    volumes:
+      - /opt/mosquitto:/mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001 
+    restart: unless-stopped 
+    labels:
+      - 'wud.tag.include=^\d+\.\d+\.\d+$$'
+      - 'wud.link.template=https://github.com/eclipse/mosquitto/releases/tag//v$${major}.$${minor}.$${patch}'
+
 networks:
   zwave:
+  default:
+    name: saltbox
+    external: true  
