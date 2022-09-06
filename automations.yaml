@@ -79,7 +79,7 @@
 - id: '1547433263483'
   alias: Workday Mornings - Turn on Outdoor Lights
   trigger:
-  - at: 06:00:00
+  - at: 06:15:00
     platform: time
   condition:
   - condition: state
@@ -92,6 +92,10 @@
     service: switch.turn_on
     target:
       entity_id: switch.outdoor_lights
+  - condition: sun
+    after: sunrise
+  - service: switch.turn_off
+    data: {}
   mode: single
 - id: '1547434549041'
   alias: Sunrise - Turn Off Outdoor Lights
@@ -189,10 +193,10 @@
     - sat
     - sun
   action:
-  - service: climate.turn_off
-    data: {}
-    target:
-      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  - type: turn_off
+    device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+    entity_id: switch.d828c9202173_ac_power_status
+    domain: switch
   mode: single
 - id: '1652749365472'
   alias: Turn on Master Bedroom AC
@@ -221,7 +225,8 @@
   action:
   - service: climate.set_temperature
     data:
-      temperature: 70
+      temperature: 68
+      hvac_mode: cool
     target:
       device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
   - service: climate.turn_on
