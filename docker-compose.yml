@@ -2,7 +2,7 @@ version: '3'
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:2022.7.7"
+    image: "ghcr.io/home-assistant/home-assistant:2022.8.7"
     init: false
     volumes:
       - /opt/home-assistant:/config
@@ -39,7 +39,7 @@ services:
         condition: service_started
   zwavejs2mqtt:
     container_name: zwavejs2mqtt
-    image: "zwavejs/zwavejs2mqtt:6.14.1"
+    image: "zwavejs/zwavejs2mqtt:7.1.0"
     restart: unless-stopped 
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
@@ -78,7 +78,7 @@ services:
       - "127.0.0.1:3551:3551"
 
   mosquitto:
-    image: eclipse-mosquitto:2.0.14
+    image: eclipse-mosquitto:2.0.15
     container_name: mosquitto
     volumes:
       - /opt/mosquitto:/mosquitto
@@ -88,7 +88,7 @@ services:
     restart: unless-stopped 
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
-      - 'wud.link.template=https://github.com/eclipse/mosquitto/releases/tag//v$${major}.$${minor}.$${patch}'
+      - 'wud.link.template=https://mosquitto.org/ChangeLog.txt'
 
 networks:
   zwave:
