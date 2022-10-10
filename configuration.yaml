@@ -38,21 +38,21 @@ http:
 recorder:
 
 # Sensors
-sensor:
-  - platform: apcupsd
-    resources:
-      - linev
-      - loadpct
-      - timeleft
-      - status
+#sensor:
+#  - platform: apcupsd
+#    resources:
+#      - linev
+#      - loadpct
+#      - timeleft
+#      - status
 #  - platform: amcrest
     
 binary_sensor:
   - platform: workday
     country: US
 
-apcupsd:
-    host: apcupsd   #Docker image 
+#apcupsd:
+#    host: apcupsd   #Docker image 
     
 group: !include groups.yaml
 automation: !include automations.yaml
