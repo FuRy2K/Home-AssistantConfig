@@ -96,6 +96,8 @@
     after: sunrise
   - service: switch.turn_off
     data: {}
+    target:
+      entity_id: switch.outdoor_lights
   mode: single
 - id: '1547434549041'
   alias: Sunrise - Turn Off Outdoor Lights
@@ -221,12 +223,19 @@
     - sun
   - condition: numeric_state
     entity_id: sensor.thermometer_air_temperature
-    above: '72'
+    above: 72
+  - condition: not
+    conditions:
+    - type: is_open
+      condition: device
+      device_id: d5779baf2006571efbc510b16eed9fab
+      entity_id: binary_sensor.bedroom_window_access_control_window_door_is_open
+      domain: binary_sensor
   action:
   - service: climate.set_temperature
     data:
-      temperature: 68
-      hvac_mode: cool
+      temperature: 70
+      hvac_mode: auto
     target:
       device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
   - service: climate.turn_on
@@ -247,30 +256,79 @@
       hours: 0
       minutes: 5
       seconds: 0
-  condition: []
+  condition:
+  - condition: not
+    conditions:
+    - type: is_open
+      condition: device
+      device_id: d5779baf2006571efbc510b16eed9fab
+      entity_id: binary_sensor.bedroom_window_access_control_window_door_is_open
+      domain: binary_sensor
   action:
   - service: notify.notify
     data:
       message: Master Bedroom overheated
   - service: climate.set_temperature
     data:
-      temperature: 70
+      temperature: 68
       hvac_mode: cool
     target:
       device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
-  - wait_for_trigger:
-    - type: not_hot
-      platform: device
-      device_id: 301b4cf8ab6b987a4bd0983d8fb509fd
-      entity_id: binary_sensor.thermometer_heat_alarm_overheat_detected
-      domain: binary_sensor
-      for:
-        hours: 0
-        minutes: 10
-        seconds: 0
+  - wait_for_trigger: []
+    timeout:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
   - service: climate.set_temperature
     data:
-      temperature: 73
+      temperature: 72
+      hvac_mode: auto
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  mode: single
+- id: '1663349475796'
+  alias: Open Window
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: d5779baf2006571efbc510b16eed9fab
+    entity_id: binary_sensor.bedroom_window_access_control_window_door_is_open
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - service: climate.turn_off
+    data: {}
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  - condition: state
+    entity_id: binary_sensor.bedroom_window_access_control_window_door_is_open
+    state: 'off'
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  - service: climate.turn_on
+    data: {}
+    target:
+      device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9
+  mode: single
+- id: '1663449243591'
+  alias: Set morning temperature
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00:00
+  condition: []
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 72
       hvac_mode: auto
     target:
       device_id: ff90ae596fa8ecb3f3e7c5ae50eb72b9

@@ -1,11 +1,6 @@
 - id: '1656516188273'
   name: Master Bedroom Cool AC
   entities:
-    switch.d828c9202173_ac_power_status:
-      device_class: switch
-      icon: mdi:power-on
-      friendly_name: D828C9202173 Ac Power Status
-      state: 'on'
     climate.d828c9202173_climate:
       hvac_modes:
       - 'off'
@@ -19,16 +14,19 @@
       - Low
       - Med
       - High
-      current_temperature: 76
-      temperature: 74
+      current_temperature: 69
+      temperature: 68
       fan_mode: Auto
       icon: mdi:air-conditioner
       friendly_name: D828C9202173 Climate
       supported_features: 9
       state: cool
+    switch.d828c9202173_ac_power_status:
+      device_class: switch
+      icon: mdi:power-on
+      friendly_name: D828C9202173 Ac Power Status
+      state: 'on'
   icon: mdi:home-thermometer
   metadata:
-    switch.d828c9202173_ac_power_status:
-      entity_only: false
     climate.d828c9202173_climate:
-      entity_only: false
+      entity_only: true
