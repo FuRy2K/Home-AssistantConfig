@@ -2,7 +2,7 @@ version: '3'
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:2022.10.2"
+    image: "ghcr.io/home-assistant/home-assistant:2022.10.5"
     init: false
     volumes:
       - /opt/home-assistant:/config
@@ -39,7 +39,7 @@ services:
         condition: service_started
   zwavejs:
     container_name: zwavejs
-    image: "zwavejs/zwave-js-ui:8.1.0"
+    image: "zwavejs/zwave-js-ui:8.2.2"
     restart: unless-stopped 
     labels:
       - 'wud.tag.include=^\d+\.\d+\.\d+$$'
