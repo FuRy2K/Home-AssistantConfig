@@ -92,8 +92,10 @@
     service: switch.turn_on
     target:
       entity_id: switch.outdoor_lights
-  - condition: sun
-    after: sunrise
+  - wait_for_trigger:
+    - platform: sun
+      event: sunrise
+      offset: 0
   - service: switch.turn_off
     data: {}
     target:
